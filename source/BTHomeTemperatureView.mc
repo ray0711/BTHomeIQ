@@ -16,7 +16,7 @@ class BTHomeTemperatureView extends WatchUi.SimpleDataField {
         label = "Temperature";
 
         temperatureField = createField(
-            "Temperature",
+            "temperature",
             TEMEPERATURE_FIELD_ID,
             FitContributor.DATA_TYPE_SINT8,
             {:mesgType=>FitContributor.MESG_TYPE_RECORD,
@@ -25,7 +25,7 @@ class BTHomeTemperatureView extends WatchUi.SimpleDataField {
             }
         );    
         humidityField = createField(
-            "Humidity",
+            "humidity",
             HUMIDITY_FIELD_ID,
             FitContributor.DATA_TYPE_UINT8,
             {:mesgType=>FitContributor.MESG_TYPE_RECORD,
