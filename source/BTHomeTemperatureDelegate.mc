@@ -19,6 +19,14 @@ class BTHomeTemperatureDelegate extends Ble.BleDelegate {
       res != null;
       res = scanResults.next() as Ble.ScanResult?
     ) {
+      var macFilter =
+        Toybox.Application.Properties.getValue("macFilter") as Lang.String;
+      if (macFilter.length == 17) {
+        if (!res.hasAddress(macFilter)) {
+          continue;
+        }
+      }
+
       var uuid = getMatchingUuid(res.getServiceUuids(), BTHOME_UUID);
       if (uuid != null) {
         System.println("BINGO!");
