@@ -1,3 +1,7 @@
 <strings>
     <string id="AppName">BTHomeTemperature</string>
+    <string id="temperature">Temperature</string>
+    <string id="humidity">Humidity</string>
+    <string id="celsius">°C</string>
+    <string id="percent">%</string>
 </strings>
