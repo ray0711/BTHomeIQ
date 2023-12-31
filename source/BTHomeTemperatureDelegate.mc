@@ -4,6 +4,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.BluetoothLowEnergy as Ble;
 
 class BTHomeTemperatureDelegate extends Ble.BleDelegate {
+  const BTHOME_UUID = "0000fcd2-0000-1000-8000-00805f9b34fb";
   var temperature;
   var humidity;
   var battery;
@@ -13,69 +14,45 @@ class BTHomeTemperatureDelegate extends Ble.BleDelegate {
   }
 
   function onScanResults(scanResults) {
-    while (true) {
-      var res = scanResults.next() as Ble.ScanResult;
-      if (res != null) {
-        if (res.hasAddress("a4:c1:38:f5:16:ea")) {
-          System.println(res.getRawData());
-          var iterator = res.getServiceUuids();
-          System.println("uuids");
-          for (
-            var data = iterator.next();
-            data != null;
-            data = iterator.next()
-          ) {
-            System.println(data.toString());
-          }
-          System.println("getManufacturerSpecificDataIterator");
-          iterator = res.getManufacturerSpecificDataIterator();
-          for (
-            var data = iterator.next();
-            data != null;
-            data = iterator.next()
-          ) {
-            System.println(data);
-          }
-          iterator = res.getServiceUuids();
-          System.println("uuids->data");
-          for (
-            var data = iterator.next();
-            data != null;
-            data = iterator.next()
-          ) {
-            var serviceData = res.getServiceData(
-              data as Toybox.BluetoothLowEnergy.Uuid
-            );
-            System.println(serviceData);
-            parseBTHomeData(serviceData);
-          }
-        }
-        if (
-          hasService(
-            res.getServiceUuids(),
-            "0000fe95-0000-1000-8000-00805f9b34fb"
-          )
-        ) {
-          System.println("BINGO!");
-        }
-      } else {
-        break;
+    for (
+      var res = scanResults.next() as Ble.ScanResult?;
+      res != null;
+      res = scanResults.next() as Ble.ScanResult?
+    ) {
+      var uuid = getMatchingUuid(res.getServiceUuids(), BTHOME_UUID);
+      if (uuid != null) {
+        System.println("BINGO!");
+        var serviceData = res.getServiceData(
+          uuid as Toybox.BluetoothLowEnergy.Uuid
+        );
+        parseBTHomeData(serviceData);
       }
     }
   }
 
-  private function hasService(iterator, serviceUuid) {
+  private function getMatchingUuid(
+    iterator,
+    serviceUuid
+  ) as Toybox.BluetoothLowEnergy.Uuid? {
     for (var uuid = iterator.next(); uuid != null; uuid = iterator.next()) {
       System.println(uuid);
       if (uuid.equals(serviceUuid)) {
-        return true;
+        return uuid;
       }
     }
-    return false;
+    return null;
   }
 
   private function parseBTHomeData(serviceData as Lang.ByteArray) {
-    var startOffset = 1; // first byte with flags ignore for now
+    if (serviceData[0] != 64) {
+      System.println(
+        "Unsupported BTHome message. Only BTHome V2, unencrypted, " +
+          "regularly triggerd is supported. Supported value: 64 actual: " +
+          serviceData[0]
+      );
+      return;
+    }
+    var startOffset = 1;
     for (
       var i = startOffset;
       i < serviceData.size();

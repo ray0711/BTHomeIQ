@@ -18,7 +18,7 @@ class BTHomeTemperatureView extends WatchUi.SimpleDataField {
         temperatureField = createField(
             "temperature",
             TEMEPERATURE_FIELD_ID,
-            FitContributor.DATA_TYPE_SINT8,
+            FitContributor.DATA_TYPE_FLOAT,
             {:mesgType=>FitContributor.MESG_TYPE_RECORD,
                 :units=>"C",
                 :nativeNum=>13,
