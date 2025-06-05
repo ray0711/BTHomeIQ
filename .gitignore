@@ -1,0 +1,7 @@
+datafield/bin/
+datafield/target/
+datafield/export/
+widget/bin/
+widget/target/
+widget/export/
+.private
