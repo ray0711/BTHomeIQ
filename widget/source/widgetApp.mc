@@ -1,7 +1,6 @@
 import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
-
 using Toybox.BluetoothLowEnergy as Ble;
 
 class widgetApp extends Application.AppBase {
@@ -10,7 +9,7 @@ class widgetApp extends Application.AppBase {
 
     function initialize() {
         AppBase.initialize();
-        bleDataSrc = new BTHomeTemperatureDelegate();        
+        bleDataSrc = new BTHomeTemperatureDelegate();
         Ble.setDelegate(bleDataSrc);
     }
 
@@ -18,7 +17,6 @@ class widgetApp extends Application.AppBase {
         Ble.setScanState(Ble.SCAN_STATE_SCANNING);
     }
 
-    // onStop() is called when your application is exiting
     function onStop(state as Dictionary?) as Void {
         Ble.setScanState(Ble.SCAN_STATE_OFF);
         System.println("temp: " + bleDataSrc.temperature);
@@ -26,13 +24,11 @@ class widgetApp extends Application.AppBase {
         System.println("batt: " + bleDataSrc.battery);
     }
 
-    // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
         var view = new widgetView();
         view.bind(bleDataSrc);
         return [ view ];
     }
-
 }
 
 function getApp() as widgetApp {
