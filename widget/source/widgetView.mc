@@ -39,9 +39,8 @@ class widgetView extends WatchUi.View {
         var tempStr = "N/A";
 
         if (dataSrc != null && dataSrc.temperature != null) {
-            // Format temperature string with degree symbol
-            var tempRounded = dataSrc.temperature.format("%0.2f");
-            tempStr = tempRounded +" °C";
+            // Format temperature string to two decimals and degree symbol
+            tempStr = dataSrc.temperature.format("%0.2f") +" °C";
         }
 
         // Use default fonts, no setFont() to avoid linter error

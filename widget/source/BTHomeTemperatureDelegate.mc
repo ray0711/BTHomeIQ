@@ -3,6 +3,7 @@ using Toybox.System as Sys;
 using Toybox.WatchUi as Ui;
 using Toybox.BluetoothLowEnergy as Ble;
 
+(:glance)
 class BTHomeTemperatureDelegate extends Ble.BleDelegate {
   const BTHOME_UUID = "0000fcd2-0000-1000-8000-00805f9b34fb";
   var temperature;
