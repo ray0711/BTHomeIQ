@@ -21,6 +21,11 @@ class widgetApp extends Application.AppBase {
         return [ new widgetView() ];
     }
 
+    function getGlanceView() {
+        var glanceView = new widgetGlanceView();
+        glanceView.bind(bleDataSrc);
+        return [ glanceView ];
+    }
 }
 
 function getApp() as widgetApp {
