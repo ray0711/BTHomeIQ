@@ -1,0 +1,9 @@
+<strings>
+    <string id="AppName">BTHomeIQ</string>
+    <string id="temperature">Temperature</string>
+    <string id="humidity">Humidity</string>
+    <string id="celsius">°C</string>
+    <string id="percent">%</string>
+    <string id="macFilter">Sensor MAC Address</string>
+    <string id="macFilterPrompt">MAC address to filter. Format aa:bb:cc:dd:ee:ff"</string>
+</strings>

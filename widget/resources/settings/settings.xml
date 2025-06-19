@@ -1,0 +1,5 @@
+<settings>
+    <setting propertyKey="@Properties.macFilter" title="@Strings.macFilter" prompt="@Strings.macFilterPrompt">
+        <settingConfig type="alphaNumeric" maxLength="17" />
+    </setting>
+</settings>
