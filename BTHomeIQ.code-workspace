@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "datafield"
+		},
+		{
+			"name": "BTHomeBarrel",
+			"path": "BTHomeBarrel"
+		}
+	],
+	"settings": {}
+}
