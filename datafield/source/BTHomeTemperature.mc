@@ -9,8 +9,9 @@ class BTHomeTemperature extends Application.AppBase {
     var bleDataSrc = null;
 
     function initialize() {
-        AppBase.initialize();
-        bleDataSrc = new BTHomeTemperatureDelegate();        
+        AppBase.initialize(); // Call superclass initializer first
+        bleDataSrc = new BTHomeBarrel.BTHomeTemperatureDelegate();        
+        Ble.setDelegate(bleDataSrc);
         Ble.setDelegate(bleDataSrc);
     }
 
