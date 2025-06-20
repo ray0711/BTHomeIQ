@@ -3,18 +3,16 @@ import Toybox.WatchUi;
 
 class widgetView extends WatchUi.View {
 
+    var dataSrc;
+
     function initialize() {
         View.initialize();
     }
 
-    // Load your resources here
-    function onLayout(dc as Dc) as Void {
-        setLayout(Rez.Layouts.MainLayout(dc));
+    function bind(src) {
+        dataSrc = src;
     }
 
-    // Called when this View is brought to the foreground. Restore
-    // the state of this View and prepare it to be shown. This includes
-    // loading resources into memory.
     function onShow() as Void {
         View.onShow();
         // Request a redraw when the widget is shown

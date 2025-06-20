@@ -1,7 +1,6 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 
-(:glance)
 class widgetGlanceView extends WatchUi.GlanceView {
 
     var dataSrc;
