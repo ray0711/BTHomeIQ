@@ -5,7 +5,7 @@
         Use "Monkey C: Edit Application" from the Visual Studio Code command palette
         to update the application attributes.
     -->
-    <iq:application id="1f99600c-1199-4da4-bd80-25b515ff215a" type="datafield" name="@Strings.AppName" entry="BTHomeTemperature" launcherIcon="@Drawables.LauncherIcon" minApiLevel="3.2.0">
+    <iq:application id="e1203cdc-8d62-4897-bcf3-92168127059d" type="widget" name="@Strings.AppName" entry="widgetApp" launcherIcon="@Drawables.LauncherIcon" minApiLevel="3.2.0">
         <!--
             Use the following from the Visual Studio Code comand palette to edit
             the build targets:
@@ -31,7 +31,6 @@
             <iq:product id="edge1030plus"/>
             <iq:product id="edge1040"/>
             <iq:product id="edge1050"/>
-            <iq:product id="edge130plus"/>
             <iq:product id="edge530"/>
             <iq:product id="edge540"/>
             <iq:product id="edge830"/>
@@ -134,7 +133,6 @@
         -->
         <iq:permissions>
             <iq:uses-permission id="BluetoothLowEnergy"/>
-            <iq:uses-permission id="FitContributor"/>
         </iq:permissions>
         <!--
             Use "Monkey C: Edit Languages" from the Visual Studio Code command

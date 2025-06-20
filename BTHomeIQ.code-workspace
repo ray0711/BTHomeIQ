@@ -9,6 +9,10 @@
 		{
 			"name": "BTHomeBarrel",
 			"path": "BTHomeBarrel"
+		},
+		{
+			"name": "widget",
+			"path": "widget"
 		}
 	],
 	"settings": {}
