@@ -36,11 +36,17 @@ class widgetView extends WatchUi.View {
 
         // Prepare texts
         var label = "Temperature";
+        var labelHumidity = "Humidity";
         var tempStr = "N/A";
+        var humidityStr = "N/A";
 
         if (dataSrc != null && dataSrc.temperature != null) {
             // Format temperature string to two decimals and degree symbol
             tempStr = dataSrc.temperature.format("%0.2f") +" °C";
+        }
+
+        if (dataSrc != null && dataSrc.humidity != null) {
+            humidityStr = dataSrc.humidity.format("%0.0f") +" %";
         }
 
         // Use default fonts, no setFont() to avoid linter error
@@ -50,7 +56,10 @@ class widgetView extends WatchUi.View {
 
         // Calculate vertical positions (fixed, for compatibility)
         var labelY = height / 4;
-        var tempY = height / 2;
+        var tempY = labelY + dc.getFontHeight(labelFont) + 5; // 5 pixels below label
+
+        var labelHumidityY = tempY + dc.getFontHeight(tempFont) + 5; // 5 pixels below temperature
+        var humidityY = labelHumidityY + dc.getFontHeight(labelFont) + 5; // 5 pixels below label
 
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         dc.clear();
@@ -60,6 +69,9 @@ class widgetView extends WatchUi.View {
 
         // Draw temperature below label (centered horizontally, fixed Y)
         dc.drawText(width / 2, tempY, tempFont, tempStr, Graphics.TEXT_JUSTIFY_CENTER);
+
+        dc.drawText(width / 2, labelHumidityY, labelFont, labelHumidity, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width / 2, humidityY, tempFont, humidityStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
 }

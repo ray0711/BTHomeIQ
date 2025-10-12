@@ -17,15 +17,20 @@ class widgetGlanceView extends WatchUi.GlanceView {
         var width = dc.getWidth();
         var height = dc.getHeight();
 
-        var tempStr = "N/A";
+        var tempStr = "T:N/A";
         if (dataSrc != null && dataSrc.temperature != null) {
-            tempStr = dataSrc.temperature.format("%0.1f") + "°C";
+            tempStr = "T:" + dataSrc.temperature.format("%0.1f") + "°C";
+        }
+
+        var humidityStr = " H:N/A";
+        if (dataSrc != null && dataSrc.humidity != null) {
+            humidityStr = " / " + dataSrc.humidity.format("%0.0f") + "%";
         }
 
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         dc.clear();
 
         // Draw temperature centered
-        dc.drawText(width / 2, height / 4, Graphics.FONT_LARGE, tempStr, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width / 2, height / 4, Graphics.FONT_MEDIUM, tempStr + humidityStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
 }
