@@ -22,7 +22,8 @@ module BTHomeBarrel {
       ) {
         var macFilter =
           Toybox.Application.Properties.getValue("macFilter") as Lang.String;
-        if (macFilter.length == 17) {
+          System.println("macFilter: " + macFilter + " length: " + macFilter.length);
+        if (macFilter.length() > 2) {
           if (!res.hasAddress(macFilter)) {
             continue;
           }
